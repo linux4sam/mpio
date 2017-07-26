@@ -69,8 +69,11 @@ def cpu():
     ]
 
     for name, string in cpus:
-        if string in open('/sys/firmware/devicetree/base/compatible').read():
-            return name
+        try:
+            if string in open('/sys/firmware/devicetree/base/compatible').read():
+                return name
+        except:
+            pass
 
     return "unknown"
 
@@ -87,8 +90,11 @@ def board():
     ]
 
     for name, string in boards:
-        if string in open('/sys/firmware/devicetree/base/compatible').read():
-            return name
+        try:
+            if string in open('/sys/firmware/devicetree/base/compatible').read():
+                return name
+        except:
+            pass
 
     return "unknown"
 
