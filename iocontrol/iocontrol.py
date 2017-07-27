@@ -43,6 +43,8 @@ except:
 
 import mio
 
+_version = "1.0"
+
 def readonly(widget, state):
     """Special definition of setting a widget to readonly, without graying it out.
     """
@@ -334,9 +336,23 @@ class MainWindow(QMainWindow):
                 except:
                     pass
 
+def excepthook(exc_type, exc_value, traceback_obj):
+    separator = '-' * 80
+    notice = "An unhandled exception occurred:\n"
+    version_info = '\n'.join((separator, "Version: %s" % _version))
+    time_string = time.strftime("%Y-%m-%d, %H:%M:%S")
+    errmsg = '%s: \n%s' % (str(exc_type), str(exc_value))
+    sections = [separator, time_string, separator, errmsg, separator]
+    msg = '\n'.join(sections)
+    errorbox = QMessageBox()
+    errorbox.setWindowTitle("Exception")
+    errorbox.setText(str(notice) + str(msg) + str(version_info))
+    errorbox.exec_()
+
 def main():
     signal.signal(signal.SIGINT, signal.SIG_DFL)
     app = QApplication(sys.argv)
+    sys.excepthook = excepthook
 
     with open(os.path.join(os.path.dirname(__file__),"style.qss"), 'r') as f:
         app.setStyleSheet(f.read())
