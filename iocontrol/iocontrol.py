@@ -298,6 +298,10 @@ class MainWindow(QMainWindow):
         tab.mainLayout.addWidget(tab.scrollArea)
         tab.setLayout(tab.mainLayout)
 
+    def keyPressEvent(self, e):
+        if e.key() == 48:
+            self.close()
+
     def setupGPIOTab(self, tab):
         self.setupDefaultTabLayout(tab)
 
