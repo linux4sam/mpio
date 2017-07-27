@@ -19,7 +19,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 """
-PyQt demo application using mpio to control and view hardware peripherals.
+PyQt demo application using mio to control and view hardware peripherals.
 """
 import argparse
 import sys
@@ -41,9 +41,7 @@ except:
     from PyQt5 import uic
     from .pyqt5_style_rc import *
 
-import mpio
-
-_version = "1.0"
+import mio
 
 def readonly(widget, state):
     """Special definition of setting a widget to readonly, without graying it out.
@@ -56,7 +54,7 @@ class AsyncHandler(QThread):
     This is wrapper that will handle asynchronously calling a function and then
     emit() an event when the function returns True.
     """
-    event = pyqtSignal([float], [str])
+    event = pyqtSignal(float)
 
     def __init__(self, function, delay=None):
         super(AsyncHandler, self).__init__()
@@ -124,7 +122,7 @@ class GPIOWidget(QWidget):
         self.handler = None
         self.gpio = None
         self.pin = pin
-        self.label = QLabel(mpio.GPIO.pin_to_name(pin))
+        self.label = QLabel(mio.GPIO.pin_to_name(pin))
         self.none = QRadioButton()
         self.none.setChecked(True)
         self.input = QRadioButton()
@@ -160,14 +158,13 @@ class GPIOWidget(QWidget):
             self.handler.stop()
         if self.gpio is not None:
             self.gpio.close()
-        self.gpio = mpio.GPIO(self.pin, mpio.GPIO.OUT, force_own=True)
+        self.gpio = mio.GPIO(self.pin, mio.GPIO.OUT, force_own=True)
 
     def setInput(self):
         readonly(self.state, True)
         if self.gpio is not None:
             self.gpio.close()
-        self.gpio = mpio.GPIO(self.pin, mpio.GPIO.IN, force_own=True)
-        self.state.setChecked(self.gpio.get())
+        self.gpio = mio.GPIO(self.pin, mio.GPIO.IN, force_own=True)
         if self.gpio.interrupts_available:
             self.handler = AsyncHandler(function=partial(self.gpio.poll, timeout=0.5))
             self.handler.event.connect(self.onValueChange)
@@ -175,12 +172,12 @@ class GPIOWidget(QWidget):
 
     def setValue(self, value):
         if self.gpio:
-            if self.gpio.mode == mpio.GPIO.OUT:
+            if self.gpio.mode == mio.GPIO.OUT:
                 self.gpio.set(value)
 
     def onValueChange(self, value):
         if self.gpio:
-            self.state.setChecked(value == "rising")
+            self.state.setChecked(value)
 
     def __del__(self):
         if self.handler:
@@ -299,10 +296,6 @@ class MainWindow(QMainWindow):
         tab.mainLayout.addWidget(tab.scrollArea)
         tab.setLayout(tab.mainLayout)
 
-    def keyPressEvent(self, e):
-        if e.key() == 48:
-            self.close()
-
     def setupGPIOTab(self, tab):
         self.setupDefaultTabLayout(tab)
 
@@ -314,17 +307,17 @@ class MainWindow(QMainWindow):
     def setupLEDTab(self, tab):
         self.setupDefaultTabLayout(tab)
 
-        leds = mpio.LED.enumerate()
+        leds = mio.LED.enumerate()
         for name in leds:
-            led = mpio.LED(name)
+            led = mio.LED(name)
             tab.scrollLayout.addRow(QLabel(led.name), LEDWidget(led))
 
     def setupADCTab(self, tab):
         self.setupDefaultTabLayout(tab)
 
-        devices = mpio.ADC.enumerate()
+        devices = mio.ADC.enumerate()
         for device in devices:
-            adc = mpio.ADC(device)
+            adc = mio.ADC(device)
             channels = adc.available_channels
             for channel in channels:
                 tab.scrollLayout.addRow(ADCWidget(adc, channel))
@@ -332,52 +325,35 @@ class MainWindow(QMainWindow):
     def setupPWMTab(self, tab):
         self.setupDefaultTabLayout(tab)
 
-        chips = mpio.PWM.enumerate()
+        chips = mio.PWM.enumerate()
         for chip in chips:
-            for channel in range(mpio.PWM.num_channels(chip)):
+            for channel in range(mio.PWM.num_channels(chip)):
                 try:
-                    pwm = mpio.PWM(chip, channel, enable=False, force_own=True)
+                    pwm = mio.PWM(chip, channel, enable=False, force_own=True)
                     tab.scrollLayout.addRow(PWMWidget(pwm))
                 except:
                     pass
 
-def excepthook(exc_type, exc_value, traceback_obj):
-    separator = '-' * 80
-    notice = "An unhandled exception occurred:\n"
-    version_info = '\n'.join((separator, "Version: %s" % _version))
-    time_string = time.strftime("%Y-%m-%d, %H:%M:%S")
-    errmsg = '%s: \n%s' % (str(exc_type), str(exc_value))
-    sections = [separator, time_string, separator, errmsg, separator]
-    msg = '\n'.join(sections)
-    errorbox = QMessageBox()
-    errorbox.setWindowTitle("Exception")
-    errorbox.setText(str(notice) + str(msg) + str(version_info))
-    errorbox.exec_()
-
 def main():
     signal.signal(signal.SIGINT, signal.SIG_DFL)
     app = QApplication(sys.argv)
-    sys.excepthook = excepthook
 
-    with open(os.path.join(os.path.dirname(__file__), "style.qss"), 'r') as f:
+    with open(os.path.join(os.path.dirname(__file__),"style.qss"), 'r') as f:
         app.setStyleSheet(f.read())
 
     win = MainWindow()
 
-    parser = argparse.ArgumentParser(description='Microchip Peripheral I/O Control')
+    parser = argparse.ArgumentParser(description='Microchip I/O Control')
     parser.add_argument('--fullscreen', dest='fullscreen', action='store_true',
                         help='show the main window in fullscreen')
     parser.set_defaults(fullscreen=False)
-
-    # ignore unknown arguments, necessary for ignoring only -smallresolution
-    args, unknown = parser.parse_known_args()
+    args = parser.parse_args()
 
     if args.fullscreen:
-        win.setFixedSize(QApplication.desktop().size())
         win.showFullScreen()
     else:
         win.show()
-    win.setFocus()
+
     sys.exit(app.exec_())
 
 if __name__ == '__main__':
