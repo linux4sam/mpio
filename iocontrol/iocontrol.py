@@ -369,7 +369,7 @@ def main():
         win.showFullScreen()
     else:
         win.show()
-
+    win.setFocus()
     sys.exit(app.exec_())
 
 if __name__ == '__main__':
