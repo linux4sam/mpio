@@ -165,7 +165,7 @@ class ADC(object):
         if not isinstance(channel, (int)):
             raise TypeError("channel must be an int.")
 
-        return self.microvolts(channel) / 1000.0
+        return float(self.microvolts(channel) / 1000.0)
 
     @property
     def available_channels(self):
