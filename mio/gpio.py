@@ -259,7 +259,7 @@ class GPIO(object):
             edge (GPIO.RISING, GPIO.FALLING, GPIO.BOTH, str): The edge to interrupt on.
             timeout (int, float, None): timeout duration in seconds.
         Returns:
-            bool: ``True`` if an edge event occurred, ``False`` on timeout.
+            mixed: value if an edge event occurred, ``None`` on timeout.
         """
         if not isinstance(timeout, (int, float, type(None))):
             raise TypeError("Invalid timeout type, must be int, float, or None.")
@@ -277,12 +277,12 @@ class GPIO(object):
 
         events = epoll.poll(timeout)
 
-        result = False
+        result = None
         for _, event in events:
             if not event & (select.EPOLLPRI | select.EPOLLET):
                 continue
             else:
-                result = True
+                result = self.get()
 
         return result
 
