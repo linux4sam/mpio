@@ -69,8 +69,8 @@ QCheckBox:disabled
 QCheckBox::indicator,
 QGroupBox::indicator
 {
-    width: 18px;
-    height: 18px;
+    width: 32px;
+    height: 32px;
 }
 QGroupBox::indicator
 {
@@ -148,8 +148,8 @@ QRadioButton:disabled
 }
 QRadioButton::indicator
 {
-    width: 21px;
-    height: 21px;
+    width: 32px;
+    height: 32px;
 }
 
 QRadioButton::indicator:unchecked
@@ -426,7 +426,7 @@ QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal
 QScrollBar:vertical
 {
     background-color: #2A2929;
-    width: 15px;
+    width: 32px;
     margin: 15px 3px 15px 3px;
     border: 1px transparent #2A2929;
     border-radius: 4px;
@@ -435,7 +435,7 @@ QScrollBar:vertical
 QScrollBar::handle:vertical
 {
     background-color: #605F5F;
-    min-height: 5px;
+    min-height: 32px;
     border-radius: 4px;
 }
 
@@ -745,7 +745,7 @@ QTabWidget{
 
 QTabWidget::pane {
     border: 1px solid #76797C;
-    padding: 5px;
+    padding: 0px;
     margin: 0px;
 }
 
@@ -980,7 +980,7 @@ QListView::item:selected:hover, QTreeView::item:selected:hover  {
 
 QSlider::groove:horizontal {
     border: 1px solid #565a5e;
-    height: 4px;
+    height: 16px;
     background: #565a5e;
     margin: 0px;
     border-radius: 2px;
@@ -989,15 +989,15 @@ QSlider::groove:horizontal {
 QSlider::handle:horizontal {
     background: #232629;
     border: 1px solid #565a5e;
-    width: 16px;
-    height: 16px;
-    margin: -8px 0;
+    width: 44px;
+    height: 44px;
+    margin: -16px 0;
     border-radius: 9px;
 }
 
 QSlider::groove:vertical {
     border: 1px solid #565a5e;
-    width: 4px;
+    width: 16px;
     background: #565a5e;
     margin: 0px;
     border-radius: 3px;
@@ -1006,9 +1006,9 @@ QSlider::groove:vertical {
 QSlider::handle:vertical {
     background: #232629;
     border: 1px solid #565a5e;
-    width: 16px;
-    height: 16px;
-    margin: 0 -8px;
+    width: 44px;
+    height: 44px;
+    margin: 0 -16px;
     border-radius: 9px;
 }
 
