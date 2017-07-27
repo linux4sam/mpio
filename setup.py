@@ -34,17 +34,15 @@ setup(
     author='Joshua Henderson',
     author_email='joshua.henderson@microchip.com',
     version=__version__,
-    packages=find_packages(),
+    packages=['mio','iocontrol'],
     license='Apache 2.0',
+    include_package_data=True,
     install_requires=[
     ],
     extras_require={
     },
     description="Hardware access for Microchip boards",
     long_description=README,
-    package_data={
-        '': ['*.txt', '*.rst', '*.md'],
-    },
     url="git@gitlab.microchip.com:/C16205/mio",
     classifiers=[
         'Development Status :: 3 - Alpha',
@@ -57,4 +55,9 @@ setup(
         'Topic :: Software Development :: Embedded Systems',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
+    entry_points={
+        'gui_scripts': [
+            'iocontrol = iocontrol.iocontrol:main'
+        ]
+    },
 )

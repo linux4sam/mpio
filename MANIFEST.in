@@ -3,3 +3,5 @@ include LICENSE-MIT.txt
 include LICENSE.txt
 include Makefile
 include pylintrc
+include iocontrol/*.ui
+include iocontrol/*.qss
