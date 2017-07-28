@@ -372,6 +372,7 @@ def main():
     args, unknown = parser.parse_known_args()
 
     if args.fullscreen:
+        win.setFixedSize(QApplication.desktop().size())
         win.showFullScreen()
     else:
         win.show()
