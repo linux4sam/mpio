@@ -367,7 +367,9 @@ def main():
     parser.add_argument('--fullscreen', dest='fullscreen', action='store_true',
                         help='show the main window in fullscreen')
     parser.set_defaults(fullscreen=False)
-    args = parser.parse_args()
+
+    # ignore unknown arguments, necessary for ignoring only -smallresolution
+    args, unknown = parser.parse_known_args()
 
     if args.fullscreen:
         win.showFullScreen()
