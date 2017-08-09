@@ -40,8 +40,6 @@ class _CSMBMessage(ctypes.Structure):
         ('size', ctypes.c_int),
         ('data', ctypes.POINTER(ctypes.c_uint8))]
 
-    #__slots__ = [name for name,type in _fields_]
-
 POINTER_C_UINT8 = ctypes.POINTER(ctypes.c_uint8)
 
 class SMBus(object):
