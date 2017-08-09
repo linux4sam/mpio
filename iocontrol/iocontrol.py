@@ -19,7 +19,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 """
-PyQt demo application using mio to control and view hardware peripherals.
+PyQt demo application using mpio to control and view hardware peripherals.
 """
 import argparse
 import sys
@@ -41,7 +41,7 @@ except:
     from PyQt5 import uic
     from .pyqt5_style_rc import *
 
-import mio
+import mpio
 
 _version = "1.0"
 
@@ -124,7 +124,7 @@ class GPIOWidget(QWidget):
         self.handler = None
         self.gpio = None
         self.pin = pin
-        self.label = QLabel(mio.GPIO.pin_to_name(pin))
+        self.label = QLabel(mpio.GPIO.pin_to_name(pin))
         self.none = QRadioButton()
         self.none.setChecked(True)
         self.input = QRadioButton()
@@ -160,13 +160,13 @@ class GPIOWidget(QWidget):
             self.handler.stop()
         if self.gpio is not None:
             self.gpio.close()
-        self.gpio = mio.GPIO(self.pin, mio.GPIO.OUT, force_own=True)
+        self.gpio = mpio.GPIO(self.pin, mpio.GPIO.OUT, force_own=True)
 
     def setInput(self):
         readonly(self.state, True)
         if self.gpio is not None:
             self.gpio.close()
-        self.gpio = mio.GPIO(self.pin, mio.GPIO.IN, force_own=True)
+        self.gpio = mpio.GPIO(self.pin, mpio.GPIO.IN, force_own=True)
         if self.gpio.interrupts_available:
             self.handler = AsyncHandler(function=partial(self.gpio.poll, timeout=0.5))
             self.handler.event.connect(self.onValueChange)
@@ -174,7 +174,7 @@ class GPIOWidget(QWidget):
 
     def setValue(self, value):
         if self.gpio:
-            if self.gpio.mode == mio.GPIO.OUT:
+            if self.gpio.mode == mpio.GPIO.OUT:
                 self.gpio.set(value)
 
     def onValueChange(self, value):
@@ -313,17 +313,17 @@ class MainWindow(QMainWindow):
     def setupLEDTab(self, tab):
         self.setupDefaultTabLayout(tab)
 
-        leds = mio.LED.enumerate()
+        leds = mpio.LED.enumerate()
         for name in leds:
-            led = mio.LED(name)
+            led = mpio.LED(name)
             tab.scrollLayout.addRow(QLabel(led.name), LEDWidget(led))
 
     def setupADCTab(self, tab):
         self.setupDefaultTabLayout(tab)
 
-        devices = mio.ADC.enumerate()
+        devices = mpio.ADC.enumerate()
         for device in devices:
-            adc = mio.ADC(device)
+            adc = mpio.ADC(device)
             channels = adc.available_channels
             for channel in channels:
                 tab.scrollLayout.addRow(ADCWidget(adc, channel))
@@ -331,11 +331,11 @@ class MainWindow(QMainWindow):
     def setupPWMTab(self, tab):
         self.setupDefaultTabLayout(tab)
 
-        chips = mio.PWM.enumerate()
+        chips = mpio.PWM.enumerate()
         for chip in chips:
-            for channel in range(mio.PWM.num_channels(chip)):
+            for channel in range(mpio.PWM.num_channels(chip)):
                 try:
-                    pwm = mio.PWM(chip, channel, enable=False, force_own=True)
+                    pwm = mpio.PWM(chip, channel, enable=False, force_own=True)
                     tab.scrollLayout.addRow(PWMWidget(pwm))
                 except:
                     pass
@@ -363,7 +363,7 @@ def main():
 
     win = MainWindow()
 
-    parser = argparse.ArgumentParser(description='Microchip I/O Control')
+    parser = argparse.ArgumentParser(description='Microchip Peripheral I/O Control')
     parser.add_argument('--fullscreen', dest='fullscreen', action='store_true',
                         help='show the main window in fullscreen')
     parser.set_defaults(fullscreen=False)

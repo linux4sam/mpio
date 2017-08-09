@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Microchip IO
+# Microchip Peripheral I/O
 #
 # Joshua Henderson <joshua.henderson@microchip.com>
 # Copyright (C) 2017 Microchip Technology Inc.  All rights reserved.
@@ -20,11 +20,11 @@
 """
 Given an ADC device, list the microvolts for all available channels.
 """
-import mio
+import mpio
 import sys
 
 def main(device):
-    adc = mio.ADC(device);
+    adc = mpio.ADC(device);
     for channel in adc.available_channels():
         print "Channel", channel, "microvolts:", adc.microvolts(channel)
 

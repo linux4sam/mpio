@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Microchip IO
+# Microchip Peripheral I/O
 #
 # Joshua Henderson <joshua.henderson@microchip.com>
 # Copyright (C) 2017 Microchip Technology Inc.  All rights reserved.
@@ -18,12 +18,12 @@
 # limitations under the License.
 #
 
-import mio
+import mpio
 import sys
 import time
 
 def main(pin):
-    gpio = mio.GPIO(pin, mio.GPIO.IN)
+    gpio = mpio.GPIO(pin, mpio.GPIO.IN)
 
     while True:
         print gpio.get()

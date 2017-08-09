@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Microchip IO
+# Microchip Peripheral I/O
 #
 # Joshua Henderson <joshua.henderson@microchip.com>
 # Copyright (C) 2017 Microchip Technology Inc.  All rights reserved.
@@ -18,14 +18,14 @@
 # limitations under the License.
 #
 
-import mio
+import mpio
 import time
 
 def main():
-    leds = mio.LED.enumerate()
+    leds = mpio.LED.enumerate()
     for name in leds:
         print name
-        l = mio.LED(name)
+        l = mpio.LED(name)
         l.brightness = l.max_brightness
         time.sleep(1)
         l.brightness = 0

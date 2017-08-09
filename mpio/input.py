@@ -1,5 +1,5 @@
 #
-# Microchip IO
+# Microchip Peripheral I/O
 #
 # Joshua Henderson <joshua.henderson@microchip.com>
 # Copyright (C) 2017 Microchip Technology Inc.  All rights reserved.
@@ -21,8 +21,8 @@ import os
 import struct
 import fcntl
 
-from mio import utils
-from mio.ioctl import IOC, IOR, IOC_READ
+from mpio import utils
+from mpio.ioctl import IOC, IOR, IOC_READ
 
 _INPUT_ROOT = '/dev/input'
 _INPUT_PATH = lambda name: os.path.join(_INPUT_ROOT, name)

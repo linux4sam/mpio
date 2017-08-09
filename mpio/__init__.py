@@ -1,5 +1,5 @@
 #
-# Microchip IO
+# Microchip Peripheral I/O
 #
 # Joshua Henderson <joshua.henderson@microchip.com>
 # Copyright (C) 2017 Microchip Technology Inc.  All rights reserved.
@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-"""mio module"""
+"""mpio module"""
 
 # Pull everything public into the module
 from .utils import cpu, board

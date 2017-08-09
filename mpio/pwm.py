@@ -1,5 +1,5 @@
 #
-# Microchip IO
+# Microchip Peripheral I/O
 #
 # Joshua Henderson <joshua.henderson@microchip.com>
 # Copyright (C) 2017 Microchip Technology Inc.  All rights reserved.
@@ -19,7 +19,7 @@
 """pwm module"""
 import os
 
-from mio import utils
+from mpio import utils
 
 _PWM_ROOT = '/sys/class/pwm'
 _CHIP_PATH = lambda chip: os.path.join(_PWM_ROOT, 'pwmchip{0}'.format(chip))

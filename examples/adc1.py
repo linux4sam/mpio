@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Microchip IO
+# Microchip Peripheral I/O
 #
 # Joshua Henderson <joshua.henderson@microchip.com>
 # Copyright (C) 2017 Microchip Technology Inc.  All rights reserved.
@@ -20,12 +20,12 @@
 """
 Monitor and print the ADC value of a specific channel.
 """
-import mio
+import mpio
 import sys
 import time
 
 def main(device, channel):
-    adc = mio.ADC(device);
+    adc = mpio.ADC(device);
     value = None
     while True:
         current = adc.value(channel)

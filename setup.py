@@ -1,5 +1,5 @@
 #
-# Microchip IO
+# Microchip Peripheral I/O
 #
 # Joshua Henderson <joshua.henderson@microchip.com>
 # Copyright (C) 2017 Microchip Technology Inc.  All rights reserved.
@@ -20,7 +20,7 @@ import codecs
 import sys
 import subprocess
 from setuptools import setup, find_packages
-from mio import __version__
+from mpio import __version__
 
 try:
     import pypandoc
@@ -30,11 +30,11 @@ except ImportError:
         README = f.read()
 
 setup(
-    name='mio',
+    name='mpio',
     author='Joshua Henderson',
     author_email='joshua.henderson@microchip.com',
     version=__version__,
-    packages=['mio','iocontrol'],
+    packages=['mpio','iocontrol'],
     license='Apache 2.0',
     include_package_data=True,
     install_requires=[
@@ -43,7 +43,7 @@ setup(
     },
     description="Hardware access for Microchip boards",
     long_description=README,
-    url="git@gitlab.microchip.com:/C16205/mio",
+    url="git@gitlab.microchip.com:/C16205/mpio",
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',

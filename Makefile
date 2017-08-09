@@ -1,6 +1,6 @@
 PYTHON=$(shell which python)
 
-LINT_FILES = $(wildcard mio/*.py) \
+LINT_FILES = $(wildcard mpio/*.py) \
 	$(wildcard iocontrol/*.py)
 
 .PHONY: docs test clean wheel source pylint
@@ -23,6 +23,6 @@ test:
 	$(PYTHON) -m unittest discover -v
 
 clean:
-	rm -f *.pyc mio/*.pyc iocontrol/*.pyc tests/*.pyc
-	rm -rf dist build mio.egg-info
+	rm -f *.pyc mpio/*.pyc iocontrol/*.pyc tests/*.pyc
+	rm -rf dist build mpio.egg-info
 	rm -rf docs/_build

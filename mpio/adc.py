@@ -1,5 +1,5 @@
 #
-# Microchip IO
+# Microchip Peripheral I/O
 #
 # Joshua Henderson <joshua.henderson@microchip.com>
 # Copyright (C) 2017 Microchip Technology Inc.  All rights reserved.
@@ -24,7 +24,7 @@ import select
 import threading
 import time
 
-from mio import utils
+from mpio import utils
 
 _ADC_ROOT = '/sys/bus/iio/devices'
 _DEVICE_PATH = lambda device: os.path.join(_ADC_ROOT, 'iio:device{0}'.format(device))

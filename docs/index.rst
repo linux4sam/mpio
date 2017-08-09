@@ -1,11 +1,12 @@
 Introduction
 ------------
 
-The Microchip I/O package provides a Python API to many of the hardware
-peripherals found on boards running Linux like the `Microchip SAMA5D2 Xplained`_,
-`Microchip SAMA5D3 Xplained`_, and `Microchip SAMA5D4 Xplained`_.
+The Microchip Peripheral I/O package provides a Python API to many of the
+hardware peripherals found on boards running Linux like the
+`Microchip SAMA5D2 Xplained`_, `Microchip SAMA5D3 Xplained`_, and
+`Microchip SAMA5D4 Xplained`_.
 
-*mio* allows you to read and write to these hardware peripherals in an
+*mpio* allows you to read and write to these hardware peripherals in an
 easy and consistent manner from Python.  Additionally, there are utilities that
 make working with these boards easier. The API is tested and there are plenty
 of common use case examples.
@@ -33,7 +34,7 @@ of common use case examples.
 License
 -------
 
-Microchip I/O is released under the terms of the `Apache 2 License`_.
+Microchip Peripheral I/O is released under the terms of the `Apache 2 License`_.
 
 Parts of the code originally provided under other licenses are noted in those
 source files, including the `MIT License`_.

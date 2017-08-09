@@ -1,5 +1,5 @@
 #
-# Microchip IO
+# Microchip Peripheral I/O
 #
 # Joshua Henderson <joshua.henderson@microchip.com>
 # Copyright (C) 2017 Microchip Technology Inc.  All rights reserved.
@@ -19,7 +19,7 @@
 import sys
 import os
 import unittest
-from mio import Serial
+from mpio import Serial
 
 if sys.version_info[0] == 3:
     raw_input = input

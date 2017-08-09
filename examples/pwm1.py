@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Microchip IO
+# Microchip Peripheral I/O
 #
 # Joshua Henderson <joshua.henderson@microchip.com>
 # Copyright (C) 2017 Microchip Technology Inc.  All rights reserved.
@@ -18,10 +18,10 @@
 # limitations under the License.
 #
 
-import mio
+import mpio
 
 def main():
-    pwm = mio.PWM(0, 0, 10000, 10)
+    pwm = mpio.PWM(0, 0, 10000, 10)
 
     while True:
         for i in range(1,10):

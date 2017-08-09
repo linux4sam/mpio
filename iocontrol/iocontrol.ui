@@ -14,7 +14,7 @@
    <enum>Qt::NoContextMenu</enum>
   </property>
   <property name="windowTitle">
-   <string>Microchip I/O</string>
+   <string>Microchip Peripheral I/O Control</string>
   </property>
   <property name="windowOpacity">
    <double>1.000000000000000</double>
@@ -99,11 +99,11 @@
            <bool>true</bool>
           </property>
           <property name="plainText">
-           <string>This application is written in Python, uses PyQt for the GUI, and uses the Microchip I/O Python package to interface with the hardware.
+           <string>This application is written in Python, uses PyQt for the GUI, and uses the Microchip Peripheral I/O Python package to interface with the hardware.
 
-The Microchip I/O (mio) package provides a Python API to many of the hardware peripherals found on boards running Linux like the Microchip SAMA5D2 Xplained, Microchip SAMA5D3 Xplained, and Microchip SAMA5D4 Xplained.
+The Microchip Peripheral I/O (mpio) package provides a Python API to many of the hardware peripherals found on boards running Linux like the Microchip SAMA5D2 Xplained, Microchip SAMA5D3 Xplained, and Microchip SAMA5D4 Xplained.
 
-Microchip I/O allows you to read and write to these hardware peripherals in an easy and consistent manner from Python.  Additionally, there are utilities that make working with these boards easier. The API is tested and there are plenty of common use case examples.
+Microchip Peripheral I/O allows you to read and write to these hardware peripherals in an easy and consistent manner from Python.  Additionally, there are utilities that make working with these boards easier. The API is tested and there are plenty of common use case examples.
 
 Supported interface classes include ADC, GPIO, I2C, SMBus, Input, LED, PWM, and SPI, Serial, and DevMem.</string>
           </property>

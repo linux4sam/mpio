@@ -4,7 +4,7 @@ API Reference
 ADC
 ---------------
 
-.. autoclass:: mio.ADC
+.. autoclass:: mpio.ADC
     :members:
     :undoc-members:
     :show-inheritance:
@@ -12,7 +12,7 @@ ADC
 DevMem
 ---------------
 
-.. autoclass:: mio.DevMem
+.. autoclass:: mpio.DevMem
     :members:
     :undoc-members:
     :show-inheritance:
@@ -20,7 +20,7 @@ DevMem
 GPIO
 ----------------
 
-.. autoclass:: mio.GPIO
+.. autoclass:: mpio.GPIO
     :members:
     :undoc-members:
     :show-inheritance:
@@ -28,7 +28,7 @@ GPIO
 I2C
 ---------------
 
-.. autoclass:: mio.I2C
+.. autoclass:: mpio.I2C
     :members:
     :undoc-members:
     :show-inheritance:
@@ -36,7 +36,7 @@ I2C
 SMBus
 ---------------
 
-.. autoclass:: mio.SMBus
+.. autoclass:: mpio.SMBus
     :members:
     :undoc-members:
     :show-inheritance:
@@ -44,7 +44,7 @@ SMBus
 Input
 -----------------
 
-.. autoclass:: mio.Input
+.. autoclass:: mpio.Input
     :members:
     :undoc-members:
     :show-inheritance:
@@ -52,7 +52,7 @@ Input
 LED
 ---------------
 
-.. autoclass:: mio.LED
+.. autoclass:: mpio.LED
     :members:
     :undoc-members:
     :show-inheritance:
@@ -60,7 +60,7 @@ LED
 PWM
 ---------------
 
-.. autoclass:: mio.PWM
+.. autoclass:: mpio.PWM
     :members:
     :undoc-members:
     :show-inheritance:
@@ -68,7 +68,7 @@ PWM
 SPI
 ---------------
 
-.. autoclass:: mio.SPI
+.. autoclass:: mpio.SPI
     :members:
     :undoc-members:
     :show-inheritance:
@@ -77,7 +77,7 @@ SPI
 Serial
 ---------------
 
-.. autoclass:: mio.Serial
+.. autoclass:: mpio.Serial
     :members:
     :undoc-members:
     :show-inheritance:
@@ -85,7 +85,7 @@ Serial
 Utils
 -----------------
 
-.. automodule:: mio.utils
+.. automodule:: mpio.utils
     :members:
     :undoc-members:
     :show-inheritance:
@@ -94,7 +94,7 @@ Utils
 Global
 ---------------
 
-.. automodule:: mio
+.. automodule:: mpio
     :members:
     :undoc-members:
     :show-inheritance:

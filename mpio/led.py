@@ -1,5 +1,5 @@
 #
-# Microchip IO
+# Microchip Peripheral I/O
 #
 # Joshua Henderson <joshua.henderson@microchip.com>
 # Copyright (C) 2017 Microchip Technology Inc.  All rights reserved.
@@ -19,7 +19,7 @@
 """led module"""
 import os
 
-from mio import utils
+from mpio import utils
 
 _LED_ROOT = '/sys/class/leds'
 _LED_PATH = lambda name: os.path.join(_LED_ROOT, name)
@@ -42,7 +42,7 @@ class LED(object):
         gpio. This is not a generic interface for working with any LED. Unless you
         configure an LED in the Linux LED subsystem using Device Tree or hard coded
         setup, that LED won't show up to this module. For that, you shoud use the
-        mio.GPIO class.
+        mpio.GPIO class.
 
     Args:
         name (str): The name of the LED.  For valid values, call enumerate().

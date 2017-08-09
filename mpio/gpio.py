@@ -1,5 +1,5 @@
 #
-# Microchip IO
+# Microchip Peripheral I/O
 #
 # Joshua Henderson <joshua.henderson@microchip.com>
 # Copyright (C) 2017 Microchip Technology Inc.  All rights reserved.
@@ -23,7 +23,7 @@ import select
 import logging
 import threading
 
-from mio import utils
+from mpio import utils
 
 def _pin_to_name(pin):
     if utils.cpu() == "sama5d4":

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Microchip IO documentation build configuration file, created by
+# Microchip Peripheral I/O documentation build configuration file, created by
 # sphinx-quickstart on Tue Jun 20 16:56:25 2017.
 #
 # This file is execfile()d with the current directory set to its
@@ -48,7 +48,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'mio'
+project = u'mpio'
 copyright = u'2017 Microchip Technology Inc.  All rights reserved.'
 author = u'Joshua Henderson'
 
@@ -89,7 +89,7 @@ todo_include_todos = False
 import sphinx_rtd_theme
 html_theme = "sphinx_rtd_theme"
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
-html_logo = "_static/mio_logo.png"
+html_logo = "_static/mpio_logo.png"
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -133,7 +133,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'MicrochipIO.tex', u'Microchip IO Documentation',
+    (master_doc, 'MicrochipIO.tex', u'Microchip Peripheral I/O Documentation',
      u'Joshua Henderson', 'manual'),
 ]
 
@@ -143,7 +143,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'microchipio', u'Microchip I/O',
+    (master_doc, 'microchipio', u'Microchip Peripheral I/O',
      [author], 1)
 ]
 
@@ -154,13 +154,13 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'MicrochipIO', u'Microchip I/O',
+    (master_doc, 'MicrochipIO', u'Microchip Peripheral I/O',
      author, 'MicrochipIO', 'One line description of project.',
      'Miscellaneous'),
 ]
 
 pdf_documents = [
-    ('index', u'MicrochipIO', u'Microchip I/O', u'Microchip Technology Inc.'),
+    ('index', u'MicrochipIO', u'Microchip Peripheral I/O', u'Microchip Technology Inc.'),
     ]
 
 
