@@ -56,7 +56,7 @@ class AsyncHandler(QThread):
     This is wrapper that will handle asynchronously calling a function and then
     emit() an event when the function returns True.
     """
-    event = pyqtSignal(float)
+    event = pyqtSignal([float],[str])
 
     def __init__(self, function, delay=None):
         super(AsyncHandler, self).__init__()
