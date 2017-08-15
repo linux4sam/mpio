@@ -252,16 +252,16 @@ class GPIO(object):
     output = set
     """This is an alias for ``set(value)``."""
 
-    def poll(self, edge=BOTH, timeout=None):
+    def poll(self, edge=BOTH, timeout=-1):
         """Block and wait for an edge interrupt or the timeout to occur.
 
         Args:
             edge (GPIO.RISING, GPIO.FALLING, GPIO.BOTH, str): The edge to interrupt on.
-            timeout (int, float, None): timeout duration in seconds.
+            timeout (int, float): timeout duration in seconds.
         Returns:
             mixed: value if an edge event occurred, ``None`` on timeout.
         """
-        if not isinstance(timeout, (int, float, type(None))):
+        if not isinstance(timeout, (int, float)):
             raise TypeError("Invalid timeout type, must be int, float, or None.")
 
         if edge not in (self.RISING, self.FALLING, self.BOTH):
@@ -282,7 +282,7 @@ class GPIO(object):
             if not event & (select.EPOLLPRI | select.EPOLLET):
                 continue
             else:
-                result = self.get()
+                result = edge
 
         return result
 
