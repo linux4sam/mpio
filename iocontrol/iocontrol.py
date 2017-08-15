@@ -167,6 +167,7 @@ class GPIOWidget(QWidget):
         if self.gpio is not None:
             self.gpio.close()
         self.gpio = mpio.GPIO(self.pin, mpio.GPIO.IN, force_own=True)
+        self.state.setChecked(self.gpio.get())
         if self.gpio.interrupts_available:
             self.handler = AsyncHandler(function=partial(self.gpio.poll, timeout=0.5))
             self.handler.event.connect(self.onValueChange)
@@ -179,7 +180,7 @@ class GPIOWidget(QWidget):
 
     def onValueChange(self, value):
         if self.gpio:
-            self.state.setChecked(value)
+            self.state.setChecked(value == "rising")
 
     def __del__(self):
         if self.handler:
