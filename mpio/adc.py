@@ -314,7 +314,8 @@ class ADC(object):
         Returns:
             list
         """
-        ids = [utils.get_trailing_number(f) for f in glob.glob(os.path.join(_ADC_ROOT, 'iio:device*')) if \
+        ids = [utils.get_trailing_number(f) for f in \
+               glob.glob(os.path.join(_ADC_ROOT, 'iio:device*')) if \
                os.path.isdir(f)]
         return sorted(ids)
 
