@@ -24,7 +24,6 @@ import glob
 import logging
 import os
 import select
-import threading
 import time
 
 from mpio.ioctl import IOR, IOWR
@@ -75,7 +74,8 @@ _GPIO_GET_LINEHANDLE_IOCTL = IOWR(0xB4, 0x03, "=" + str(_GPIOHANDLES_MAX) + "II"
 
 _GPIOEVENT_REQUEST_RISING_EDGE = 1 << 0
 _GPIOEVENT_REQUEST_FALLING_EDGE = 1 << 1
-_GPIOEVENT_REQUEST_BOTH_EDGES = _GPIOEVENT_REQUEST_RISING_EDGE | _GPIOEVENT_REQUEST_FALLING_EDGE
+_GPIOEVENT_REQUEST_BOTH_EDGES = _GPIOEVENT_REQUEST_RISING_EDGE | \
+                                _GPIOEVENT_REQUEST_FALLING_EDGE
 
 class _CGPIOGPIOEventRequest(ctypes.Structure):
     _fields_ = [
@@ -139,7 +139,7 @@ class GPIO(object):
     def __init__(self, pin, mode=None, pullup=None, initial=False, force_own=False):
         self._fd = None
         self._pin = None
-        self._offset = None
+        self._line_offset = None
         self._name = None
         self._mode = None
         self._logger = logging.getLogger(__name__)
@@ -158,7 +158,7 @@ class GPIO(object):
             if pin is None:
                 raise RuntimeError("Unknown pin name")
 
-        self._name, self._offset = self._pin_lookup(pin)
+        self._name, self._line_offset = self._pin_lookup(pin)
 
         if self._name is None:
             raise ValueError("Invalid pin number.")
@@ -182,6 +182,9 @@ class GPIO(object):
 
         self._pin = pin
         self._mode = mode
+
+        if initial is not None:
+            self.set(initial)
 
     def __del__(self):
         self.close()
@@ -222,7 +225,6 @@ class GPIO(object):
 
         :type: bool
         """
-        # TODO: Not supported
         return True
 
     def close(self):
@@ -249,15 +251,13 @@ class GPIO(object):
         Returns:
             bool
         """
+        if self.mode != self.IN:
+            raise RuntimeError("Cannot get value on pin that is not input mode.")
+
         req = _CGPIOGPIOHandleRequest()
-        req.lineoffsets[0] = self._offset
+        req.lineoffsets[0] = self._line_offset
         req.default_values[0] = 0
-        if self._mode == self.IN:
-            req.flags = _GPIOHANDLE_REQUEST_INPUT
-        elif self._mode == self.OUT:
-            req.flags = _GPIOHANDLE_REQUEST_OUTPUT
-            if initial:
-                req.default_values[0] = 1
+        req.flags = _GPIOHANDLE_REQUEST_INPUT
         req.consumer_label = "MPIO"
         req.lines = 1
         req.fd = 0
@@ -287,14 +287,9 @@ class GPIO(object):
             raise RuntimeError("Cannot set value on pin that is not output mode.")
 
         req = _CGPIOGPIOHandleRequest()
-        req.lineoffsets[0] = self._offset
+        req.lineoffsets[0] = self._line_offset
         req.default_values[0] = 0
-        if self._mode == self.IN:
-            req.flags = _GPIOHANDLE_REQUEST_INPUT
-        elif self._mode == self.OUT:
-            req.flags = _GPIOHANDLE_REQUEST_OUTPUT
-            if initial:
-                req.default_values[0] = 1
+        req.flags = _GPIOHANDLE_REQUEST_OUTPUT
         req.consumer_label = "MPIO"
         req.lines = 1
         req.fd = 0
@@ -335,7 +330,7 @@ class GPIO(object):
             raise RuntimeError("Interrupts not configurable on pin.")
 
         req = _CGPIOGPIOEventRequest()
-        req.lineoffset = self._offset
+        req.lineoffset = self._line_offset
         req.handleflags = 0
         req.consumer_label = "MPIO"
         if edge == self.BOTH:
@@ -345,7 +340,7 @@ class GPIO(object):
             req.eventflags = _GPIOEVENT_REQUEST_RISING_EDGE
         elif edge == self.FALLING:
             req.eventflags = _GPIOEVENT_REQUEST_FALLING_EDGE
-        req.fd = 0;
+        req.fd = 0
         fcntl.ioctl(self._fd, _GPIO_GET_LINEEVENT_IOCTL, req, True)
 
         try:
@@ -358,8 +353,8 @@ class GPIO(object):
                 if not event & (select.EPOLLIN | select.EPOLLET):
                     continue
                 else:
-                    bytes = os.read(req.fd, ctypes.sizeof(_CGPIOGPIOEventData));
-                    event = _CGPIOGPIOEventData.from_buffer_copy(bytes)
+                    buf = os.read(req.fd, ctypes.sizeof(_CGPIOGPIOEventData))
+                    event = _CGPIOGPIOEventData.from_buffer_copy(buf)
                     if event.id == _GPIOEVENT_EVENT_RISING_EDGE:
                         result = self.RISING
                     elif event.id == _GPIOEVENT_EVENT_FALLING_EDGE:
@@ -375,48 +370,60 @@ class GPIO(object):
 
     @staticmethod
     def _pin_lookup(pin):
-        """Lookup a pin and return the gpiochip name and line offset in that chip.
+        """Lookup a pin and return the gpiochip name and line offset in that
+        chip.
+
         Returns:
-            tuple: Returns the str name and integer offset.
+            tuple: Returns the str name and integer line offset.
         """
-        p = 0
+        offset = 0
         for devname in sorted(glob.glob(_GPIO_ROOT + "*")):
             fd = os.open(os.path.join("/dev", devname), os.O_RDONLY)
             info = _CGPIOGPIOChipInfo()
             fcntl.ioctl(fd, _GPIO_GET_CHIPINFO_IOCTL, info, True)
-            for offset in range(info.lines):
-                if p == pin:
-                    return devname, offset
-                p += 1
+            for line_offset in range(info.lines):
+                if offset == pin:
+                    return devname, line_offset
+                offset += 1
             os.close(fd)
 
         return None, None
 
     @staticmethod
     def _name_lookup(name):
-        p = 0
+        """Lookup a pin by name.
+
+        Returns:
+            integer: Returns the pin or None.
+        """
+        offset = 0
         for devname in sorted(glob.glob(_GPIO_ROOT + "*")):
             fd = os.open(os.path.join("/dev", devname), os.O_RDONLY)
             info = _CGPIOGPIOChipInfo()
             fcntl.ioctl(fd, _GPIO_GET_CHIPINFO_IOCTL, info, True)
-            for offset in range(info.lines):
+            for line_offset in range(info.lines):
                 line = _CGPIOGPIOLineInfo()
-                line.line_offset = offset
+                line.line_offset = line_offset
                 fcntl.ioctl(fd, _GPIO_GET_LINEINFO_IOCTL, line, True)
                 if line.name == name:
-                    return p
-                p += 1
+                    return offset
+                offset += 1
             os.close(fd)
 
         return None
 
     @staticmethod
     def pin_to_name(pin):
-        devname, offset = GPIO._pin_lookup(pin)
+        """Lookup the name of a pin.
+
+        Returns:
+            str: Returns the pin name or "unknown".
+        """
+        devname, line_offset = GPIO._pin_lookup(pin)
         if devname is not None:
             fd = os.open(os.path.join("/dev", devname), os.O_RDONLY)
             line = _CGPIOGPIOLineInfo()
-            line.line_offset = offset
+            line.line_offset = line_offset
             fcntl.ioctl(fd, _GPIO_GET_LINEINFO_IOCTL, line, True)
             os.close(fd)
             return line.name
@@ -425,13 +432,18 @@ class GPIO(object):
 
     @staticmethod
     def enumerate():
+        """Enumerate a list of gpio pins available on the system.
+
+        Returns:
+            list
+        """
         pins = []
         pin = 0
         for devname in sorted(glob.glob(_GPIO_ROOT + "*")):
             fd = os.open(os.path.join("/dev", devname), os.O_RDONLY)
             info = _CGPIOGPIOChipInfo()
             fcntl.ioctl(fd, _GPIO_GET_CHIPINFO_IOCTL, info, True)
-            for offset in range(info.lines):
+            for _ in range(info.lines):
                 pins.append(pin)
                 pin += 1
             os.close(fd)
