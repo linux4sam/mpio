@@ -3,6 +3,10 @@ PYTHON=$(shell which python)
 LINT_FILES = $(wildcard mpio/*.py) \
 	$(wildcard iocontrol/*.py)
 
+LINT_FILES := $(filter-out iocontrol/pyqt_style_rc.py \
+		iocontrol/pyqt5_style_rc.py, \
+		$(LINT_FILES))
+
 .PHONY: docs test clean wheel source pylint
 
 all: wheel
