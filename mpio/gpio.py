@@ -304,6 +304,11 @@ class GPIO(object):
 
     @staticmethod
     def pin_to_name(pin):
+        """Return the name of a pin.
+
+        Returns:
+            str
+        """
         return _pin_to_name(pin)
 
     def __str__(self):
