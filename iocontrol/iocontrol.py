@@ -56,7 +56,7 @@ class AsyncHandler(QThread):
     This is wrapper that will handle asynchronously calling a function and then
     emit() an event when the function returns True.
     """
-    event = pyqtSignal([float],[str])
+    event = pyqtSignal([float], [str])
 
     def __init__(self, function, delay=None):
         super(AsyncHandler, self).__init__()
@@ -359,7 +359,7 @@ def main():
     app = QApplication(sys.argv)
     sys.excepthook = excepthook
 
-    with open(os.path.join(os.path.dirname(__file__),"style.qss"), 'r') as f:
+    with open(os.path.join(os.path.dirname(__file__), "style.qss"), 'r') as f:
         app.setStyleSheet(f.read())
 
     win = MainWindow()
