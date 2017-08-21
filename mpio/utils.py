@@ -72,7 +72,7 @@ def cpu():
         try:
             if string in open('/sys/firmware/devicetree/base/compatible').read():
                 return name
-        except:
+        except: #pylint: disable=bare-except
             pass
 
     return "unknown"
@@ -93,7 +93,7 @@ def board():
         try:
             if string in open('/sys/firmware/devicetree/base/compatible').read():
                 return name
-        except:
+        except: #pylint: disable=bare-except
             pass
 
     return "unknown"
