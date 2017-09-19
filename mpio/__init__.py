@@ -20,7 +20,8 @@
 
 # Pull everything public into the module
 from .utils import cpu, board
-from .gpio import GPIO
+#from .gpio_sysfs import GPIOSysfs as GPIO
+from .gpio_cdev import GPIO
 from .led import LED
 from .pwm import PWM
 from .adc import ADC

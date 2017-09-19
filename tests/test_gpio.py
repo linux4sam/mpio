@@ -41,28 +41,16 @@ class TestGeneral(unittest.TestCase):
         self.assertTrue(gpio.pin == pin_output)
         self.assertTrue(gpio.fd > 0)
 
-        gpio.mode = "out"
-        self.assertTrue(gpio.mode == "out")
-
-        gpio.mode = "in"
-        self.assertTrue(gpio.mode == "in")
-
-        self.assertTrue(gpio.interrupts_available)
-
-        gpio.edge = "rising"
-        self.assertTrue(gpio.edge == "rising")
-        gpio.edge = "falling"
-        self.assertTrue(gpio.edge == "falling")
-        gpio.edge = "both"
-        self.assertTrue(gpio.edge == "both")
-
         gpio.close()
 
-    # this test requires PD25 and PD27 to be tied together
+    # this test requires GPIO_INPUT and GPIO_OUTPUT to be tied together
     def test_loopback(self):
 
-        gpio_in = GPIO(pin_input, "in")
-        gpio_out = GPIO(pin_output, "out")
+        gpio_in = GPIO(pin_input, GPIO.IN)
+        gpio_out = GPIO(pin_output, GPIO.OUT)
+
+        self.assertTrue(gpio_in.mode == "in")
+        self.assertTrue(gpio_out.mode == "out")
 
         gpio_out.set(False)
         self.assertTrue(gpio_in.get() == False)
@@ -76,7 +64,7 @@ class TestGeneral(unittest.TestCase):
         gpio_in.close()
         gpio_out.close()
 
-    # this test requires PD25 and PD27 to be tied together
+    # this test requires GPIO_INPUT and GPIO_OUTPUT to be tied together
     def test_loopback_async(self):
 
         gpio_in = GPIO(pin_input, "in")

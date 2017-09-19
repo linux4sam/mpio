@@ -118,8 +118,7 @@ class GPIO(object):
 
     Args:
         pin (int): The pin number of the GPIO.
-        mode (GPIO.IN, GPIO.OUT, None): The mode of the GPIO. ``None`` for don't change.
-        pullup (None): Unsupported.  Must be None.
+        mode (GPIO.IN, GPIO.OUT): The mode of the GPIO. ``None`` for don't change.
         initial (GPIO.LOW, GPIO.HIGH, bool): When the mode is ``GPIO.OUT``,
             this will be the initial value of the output.
         force_own (bool): When ``True``, steal ownership as necessary.
@@ -136,7 +135,7 @@ class GPIO(object):
     RISING, FALLING, BOTH = "rising", "falling", "both"
     """Defines for the edge interrupt type of the pin."""
 
-    def __init__(self, pin, mode=None, pullup=None, initial=False, force_own=False):
+    def __init__(self, pin, mode, initial=False, force_own=False):
         self._fd = None
         self._pin = None
         self._line_offset = None
@@ -147,10 +146,7 @@ class GPIO(object):
         if not isinstance(pin, (int, str)):
             raise TypeError("Invalid pin type, must be int.")
 
-        if pullup is not None:
-            raise ValueError("sysfs does not support pullups")
-
-        if mode not in (self.IN, self.OUT, None):
+        if mode not in (self.IN, self.OUT):
             raise ValueError("Invalid mode value.")
 
         if isinstance(pin, str):
@@ -183,7 +179,7 @@ class GPIO(object):
         self._pin = pin
         self._mode = mode
 
-        if initial is not None:
+        if self.mode == self.OUT and initial is not None:
             self.set(initial)
 
     def __del__(self):

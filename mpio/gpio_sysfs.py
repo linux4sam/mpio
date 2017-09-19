@@ -21,7 +21,6 @@ import os
 import time
 import select
 import logging
-import threading
 
 from mpio import utils
 
@@ -42,27 +41,6 @@ def _is_exported(pin):
     """
     return os.path.isdir(_GPIO_PATH(pin))
 
-class AsyncPoll(threading.Thread):
-    """Asynchronous polling thread.
-    """
-    def __init__(self, gpio, callback, edge):
-        super(AsyncPoll, self).__init__()
-        self.gpio = gpio
-        self.callback = callback
-        self.edge = edge
-        self.running = False
-
-    def run(self):
-        self.running = True
-        while self.running:
-            if self.gpio.poll(self.edge, 0.1):
-                self.callback()
-
-    def stop(self):
-        """Stop the capture thread from running.
-        """
-        self.running = False
-
 class GPIO(object):
     """Create a GPIO object to control and monitor an input or output pin.
 
@@ -82,8 +60,7 @@ class GPIO(object):
 
     Args:
         pin (int): The pin number of the GPIO.
-        mode (GPIO.IN, GPIO.OUT, None): The mode of the GPIO. ``None`` for don't change.
-        pullup (None): Unsupported.  Must be None.
+        mode (GPIO.IN, GPIO.OUT): The mode of the GPIO. ``None`` for don't change.
         initial (GPIO.LOW, GPIO.HIGH, bool): When the mode is ``GPIO.OUT``,
             this will be the initial value of the output.
         force_own (bool): When ``True``, steal ownership as necessary.
@@ -100,7 +77,7 @@ class GPIO(object):
     RISING, FALLING, BOTH = "rising", "falling", "both"
     """Defines for the edge interrupt type of the pin."""
 
-    def __init__(self, pin, mode=None, pullup=None, initial=False, force_own=False):
+    def __init__(self, pin, mode, initial=False, force_own=False):
         self._fd = None
         self._pin = None
         self._logger = logging.getLogger(__name__)
@@ -108,10 +85,7 @@ class GPIO(object):
         if not isinstance(pin, int):
             raise TypeError("Invalid pin type, must be int.")
 
-        if pullup is not None:
-            raise ValueError("sysfs does not support pullups")
-
-        if mode not in (self.IN, self.OUT, None):
+        if mode not in (self.IN, self.OUT):
             raise ValueError("Invalid mode value.")
 
         if _is_exported(pin) and not force_own:
@@ -285,22 +259,6 @@ class GPIO(object):
                 result = edge
 
         return result
-
-    def async_poll(self, callback, edge=BOTH):
-        """Returns a thread that invokes the specified callback when an interrupt
-        is detected asynchronously.
-
-        Args:
-            callback: Function to call when interrupt occurs.
-            edge (GPIO.RISING, GPIO.FALLING, GPIO.BOTH, str): The edge to interrupt on.
-        Returns:
-            thread
-        """
-        handler = AsyncPoll(self, callback, edge)
-        handler.start()
-        while not handler.running:
-            time.sleep(0.001)
-        return handler
 
     @staticmethod
     def pin_to_name(pin):
