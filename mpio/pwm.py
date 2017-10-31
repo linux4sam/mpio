@@ -34,16 +34,18 @@ def _is_exported(chip, channel):
 class PWM(object):
     """Pulse Width Modulation (PWM) object to generate signals on a pin.
 
-    Provides an interface to Pulse Width Modulation (PWM) generators available on
-    the system.
+    Provides an interface to Pulse Width Modulation (PWM) generators available
+    on the system.
 
-    To identify a specific PWM instance, a chip number and channel number is needed.
-    The available chips can be retrieved with the enumerate() function.  Then, with
-    that you can call num_channels() to see how many channels the chip supports.
-    However, you will have to reference CPU and board documentation to find out what
-    physical pin the chip/channel number corresponds to.
+    To identify a specific PWM instance, a chip number and channel number is
+    needed. The available chips can be retrieved with the enumerate() function.
+    Then, with that you can call num_channels() to see how many channels the
+    chip supports. However, you will have to reference CPU and board
+    documentation to find out what physical pin the chip/channel number
+    corresponds to.
 
-    See https://www.kernel.org/doc/Documentation/pwm.txt
+    See Also:
+        https://www.kernel.org/doc/Documentation/pwm.txt
 
     Args:
         chip (int): For valid values of chip, call enumerate().
@@ -219,13 +221,14 @@ class PWM(object):
     def polarity(self):
         """Polarity setting of the PWM.
 
-        Basically, this sets the "active high" or "active low" setting of the PWM.
+        Basically, this sets the "active high" or "active low" setting of the
+        PWM.
 
         :type: PWM.NORMAL, PWM.INVERSED
 
         Note:
-            This a readonly property because we set polarity in creation and I'm
-            not sure it makes sense to change it later.
+            This a readonly property because we set polarity in creation and
+            there seems to be little value in changing it later.
         """
         return utils.readstr_all(os.path.join(_CHANNEL_PATH(self._chip,
                                                             self._channel),

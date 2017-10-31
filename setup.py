@@ -43,7 +43,6 @@ setup(
     },
     description="Hardware access for Microchip boards",
     long_description=README,
-    url="git@gitlab.microchip.com:/C16205/mpio",
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',

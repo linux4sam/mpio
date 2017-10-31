@@ -34,8 +34,9 @@ class DevMem(object):
     useful for trivial setup and operation of hardware that is otherwise not
     exposed through a formal driver.
 
-    This is losely similar in capability to the userspace command line devmem2 tool:
-    http://free-electrons.com/pub/mirror/devmem2.c
+    See Also:
+        This is losely similar in capability to the userspace command line tool
+        `devmem2 <http://free-electrons.com/pub/mirror/devmem2.c>`_.
 
     Note:
         Running this requires root access by default.
@@ -44,9 +45,9 @@ class DevMem(object):
         This interface only maps one page at a time.
 
     Warning:
-        Obviously, use this with extreme caution. This can make the system unstable,
-        especially when changing values of memory currently running code (like the
-        kernel) are using.  There is no error checking on values written.
+        Use with extreme caution. This can make the system unstable, especially
+        when changing values in memory that currently running code (like the
+        kernel itself) is using.  There is no error checking on values written.
 
     Args:
         addr (int): The starting address to manage.

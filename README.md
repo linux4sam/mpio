@@ -1,3 +1,5 @@
+![Microchip](docs/_static/microchip_logo.png)
+
 # Microchip Peripheral I/O Python Package
 
 This package provides easy access to various hardware peripherals found on

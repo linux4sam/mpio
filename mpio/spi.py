@@ -51,6 +51,10 @@ class SPI(object):
     Note:
         This requires the kernel module ``spidev`` to be available.
 
+    See Also:
+        For an alternate package for interfacing with SPI devices, see
+        `spidev <https://pypi.python.org/pypi/spidev>`_.
+
     Args:
         devpath (str): spidev device path.
         mode (int): SPI mode, can be 0, 1, 2, 3.

@@ -34,6 +34,10 @@ class Serial(object):
     This can be used for simple bi-directional serial communication with connected
     devices.
 
+    See Also:
+        For an alternate package for interfacing with serial ports, see `pySerial
+        <https://pythonhosted.org/pyserial/>`_.
+
     Args:
         devpath (str): tty device path.
         baudrate (int): baudrate.

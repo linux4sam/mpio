@@ -19,7 +19,7 @@
 """utils module
 
 This module provides miscellaneous functionality both used internally
-and some of it is public for use externally.
+and available for use externally.
 """
 import os
 import re

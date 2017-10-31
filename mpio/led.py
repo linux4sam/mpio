@@ -42,7 +42,7 @@ class LED(object):
         gpio. This is not a generic interface for working with any LED. Unless you
         configure an LED in the Linux LED subsystem using Device Tree or hard coded
         setup, that LED won't show up to this module. For that, you shoud use the
-        mpio.GPIO class.
+        GPIO class.
 
     Args:
         name (str): The name of the LED.  For valid values, call enumerate().

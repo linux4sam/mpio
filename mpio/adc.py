@@ -62,7 +62,9 @@ class ADC(object):
     configured to trigger by hardware or software to generate digital values from
     analog inputs.
 
-    See also http://www.at91.com/linux4sam/bin/view/Linux4SAM/IioAdcDriver
+    See Also:
+        http://www.at91.com/linux4sam/bin/view/Linux4SAM/IioAdcDriver
+        http://www.at91.com/linux4sam/bin/view/Linux4SAM/UsingSAMA5D2ADCDevice
 
     Args:
         device (int): The ADC device.

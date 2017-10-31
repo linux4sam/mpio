@@ -39,6 +39,10 @@ class Input(object):
     For example, a mouse or keyboard or gpio buttons can generate input events
     this interface can relay.
 
+    See Also:
+        For a more complete way to read linux input events, see the `evdev
+        <https://pypi.python.org/pypi/evdev/>`_ package.
+
     Args:
         name (str): For valid values of name, call enumerate().
     """

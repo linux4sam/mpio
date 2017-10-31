@@ -48,6 +48,10 @@ class SMBus(object):
     Similar to the I2C class, this provides simple System Management Bus (SMB)
     communications for performing byte and block transfers.
 
+    See Also:
+        For an alternate package for interfacing with smbus devices, see
+        `smbus-cffi <https://pypi.python.org/pypi/smbus-cffi>`_.
+
     Args:
         devpath (str): Complete path to the I2C device.
     """
