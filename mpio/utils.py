@@ -87,6 +87,8 @@ def board():
         ("sama5d3-xplained", "atmel,sama5d3-xplained"),
         ("sama5d4-xplained", "atmel,sama5d4-xplained"),
         ("sama5d2-xplained", "atmel,sama5d2-xplained"),
+        ("sama5d27-som1-ek", "atmel,sama5d27-som1-ek"),
+        ("sama5d2-ptc-ek", "atmel,sama5d2-ptc_ek"),
     ]
 
     for name, string in boards:
