@@ -24,8 +24,8 @@ from mpio import I2C
 if sys.version_info[0] == 3:
     raw_input = input
 
-devpath1 = os.environ.get('SPI_DEVPATH1', "/dev/i2c-2")
-eeprom_addr = int(os.environ.get('SPI_EEPROM_ADDR', "0x54"), 0)
+devpath1 = os.environ.get('I2C_DEVPATH1', "/dev/i2c-2")
+eeprom_addr = int(os.environ.get('I2C_EEPROM_ADDR', "0x54"), 0)
 
 class TestGeneral(unittest.TestCase):
 
@@ -71,7 +71,7 @@ class TestGeneral(unittest.TestCase):
 
     @unittest.skipIf(os.environ.get('NOINTERACTIVE', False), "interactive disabled")
     def test_interactive(self):
-        devpath2 = os.environ.get('SPI_DEVPATH2', "/dev/i2c-1")
+        devpath2 = os.environ.get('I2C_DEVPATH2', "/dev/i2c-1")
         i2c = I2C(devpath2)
 
         # S [ 0x52 W ] [0xaa] [0xbb] [0xcc] [0xdd] NA
