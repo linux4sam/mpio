@@ -5,8 +5,8 @@
     <published>2012-11-01T15:45:05Z</published>
     <updated>2012-11-01T15:45:05Z</updated>
     <author>Unknown</author>
-    <path exec="/opt/ApplicationLauncher/launch.sh" />
-    <arg>iocontrol --fullscreen</arg>
+    <path exec="/opt/ApplicationLauncher/launch-fork.sh" />
+    <arg>/opt/iocontrol/iocontrol.sh</arg>
     <description>Test Description</description>
     <link rel="enclosure" type="image/png" href="../../applications/resources/mpio.png" />
 </entry>
