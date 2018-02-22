@@ -1,6 +1,12 @@
 Changelog
 ---------
 
+1.0 (February 22, 2018)
+=========================
+
+- Initial stable release.
+
+
 0.3-alpha (October 31, 2017)
 =========================
 
