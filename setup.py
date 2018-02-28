@@ -34,8 +34,7 @@ setup(
     author='Joshua Henderson',
     author_email='joshua.henderson@microchip.com',
     version=__version__,
-    packages=['mpio','iocontrol'],
-    license='Apache 2.0',
+    packages=['mpio'],
     include_package_data=True,
     install_requires=[
     ],
@@ -44,8 +43,10 @@ setup(
     description="Hardware access for Microchip boards",
     long_description=README,
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
+        'Intended Audience :: Education',
+        'Intended Audience :: Information Technology',
         'License :: OSI Approved :: Apache Software License',
         'Operating System :: POSIX',
         'Programming Language :: Python :: 2',
@@ -54,9 +55,4 @@ setup(
         'Topic :: Software Development :: Embedded Systems',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
-    entry_points={
-        'gui_scripts': [
-            'iocontrol = iocontrol.iocontrol:main'
-        ]
-    },
 )

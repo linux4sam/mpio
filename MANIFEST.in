@@ -1,7 +1,5 @@
 include README.md
-include LICENSE-MIT.txt
-include LICENSE.txt
+include LICENSE.MIT
+include LICENSE
 include Makefile
 include pylintrc
-include iocontrol/*.ui
-include iocontrol/*.qss

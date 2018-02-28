@@ -1,11 +1,6 @@
 PYTHON=$(shell which python)
 
-LINT_FILES = $(wildcard mpio/*.py) \
-	$(wildcard iocontrol/*.py)
-
-LINT_FILES := $(filter-out iocontrol/pyqt_style_rc.py \
-		iocontrol/pyqt5_style_rc.py, \
-		$(LINT_FILES))
+LINT_FILES = $(wildcard mpio/*.py)
 
 .PHONY: docs test clean wheel source pylint
 
@@ -27,6 +22,6 @@ test:
 	$(PYTHON) -m unittest discover -v
 
 clean:
-	rm -f *.pyc mpio/*.pyc iocontrol/*.pyc tests/*.pyc
+	rm -f *.pyc mpio/*.pyc tests/*.pyc
 	rm -rf dist build mpio.egg-info
 	rm -rf docs/_build

@@ -46,6 +46,3 @@ Microchip Peripheral I/O is released under the terms of the `Apache License
 Version 2`. See the `LICENSE` file for more information.  Parts of the code
 originally provided under other licenses are noted in those source files,
 including the MIT license and is reproduced in the `LICENSE.MIT` file.
-
-The iocontrol demo application is released under the terms of the `GPLv3`
-license and its QDarkStyleSheet theme is `MIT`.
