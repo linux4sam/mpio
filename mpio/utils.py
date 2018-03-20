@@ -66,6 +66,7 @@ def cpu():
         ("sama5d3", "sama5d3"),
         ("sama5d4", "sama5d4"),
         ("sama5d2", "sama5d2"),
+        ("at91sam9x5", "at91sam9x5")
     ]
 
     for name, string in cpus:
@@ -89,6 +90,7 @@ def board():
         ("sama5d2-xplained", "atmel,sama5d2-xplained"),
         ("sama5d27-som1-ek", "atmel,sama5d27-som1-ek"),
         ("sama5d2-ptc-ek", "atmel,sama5d2-ptc_ek"),
+        ("at91sam9x35-ek", "atmel,at91sam9g35ek")
     ]
 
     for name, string in boards:
