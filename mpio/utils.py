@@ -62,6 +62,11 @@ def cpu():
     Returns:
         str
     """
+
+    fixed = os.environ.get('MPIO_CPU')
+    if fixed:
+        return fixed
+
     cpus = [
         ("sama5d3", "sama5d3"),
         ("sama5d4", "sama5d4"),
@@ -76,7 +81,7 @@ def cpu():
         except: #pylint: disable=bare-except
             pass
 
-    return "unknown"
+    return None
 
 def board():
     """Returns a unique string identifying the current board.
@@ -84,6 +89,11 @@ def board():
     Returns:
         str
     """
+
+    fixed = os.environ.get('MPIO_BOARD')
+    if fixed:
+        return fixed
+
     boards = [
         ("sama5d3-xplained", "atmel,sama5d3-xplained"),
         ("sama5d4-xplained", "atmel,sama5d4-xplained"),
@@ -100,7 +110,7 @@ def board():
         except: #pylint: disable=bare-except
             pass
 
-    return "unknown"
+    return None
 
 def get_trailing_number(string):
     """Returns the trailing number from a string.
