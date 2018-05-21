@@ -356,7 +356,7 @@ class GPIO(object):
                     elif event.id == _GPIOEVENT_EVENT_FALLING_EDGE:
                         result = self.FALLING
                     else:
-                        result = "unknown"
+                        result = None
         except:
             raise
         finally:
@@ -392,6 +392,9 @@ class GPIO(object):
         Returns:
             integer: Returns the pin or None.
         """
+        if name is None:
+            return None
+
         offset = 0
         for devname in sorted(glob.glob(_GPIO_ROOT + "*")):
             fd = os.open(os.path.join("/dev", devname), os.O_RDONLY)
@@ -413,7 +416,7 @@ class GPIO(object):
         """Lookup the name of a pin.
 
         Returns:
-            str: Returns the pin name or "unknown".
+            str: Returns the pin name or None.
         """
         devname, line_offset = GPIO._pin_lookup(pin)
         if devname is not None:
@@ -424,7 +427,7 @@ class GPIO(object):
             os.close(fd)
             return line.name
 
-        return "unknown"
+        return None
 
     @staticmethod
     def enumerate():
