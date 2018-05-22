@@ -39,5 +39,23 @@ class TestGeneral(unittest.TestCase):
         self.assertEqual(spi.extra_flags, 0)
         spi.close()
 
+    def test_loopback(self):
+        devpath = os.environ.get('SPI_DEVPATH', "/dev/spidev0")
+        spi = SPI(devpath, 0, 100000)
+
+        buf_in = list(range(512))
+        buf_out = spi.transfer(buf_in)
+        self.assertEqual(buf_in, buf_out)
+
+        buf_in = bytearray(buf_in)
+        buf_out = spi.transfer(buf_in)
+        self.assertEqual(buf_in, buf_out)
+
+        buf_in = bytes(bytearray(buf_in))
+        buf_out = spi.transfer(buf_in)
+        self.assertEqual(buf_in, buf_out)
+
+        spi.close()
+
 if __name__ == '__main__':
     unittest.main()
