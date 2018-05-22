@@ -188,9 +188,10 @@ class SPI(object):
         """
         Close the device and release any system resources.
         """
-        if self._fd is not None:
-            os.close(self._fd)
-            self._fd = None
+        if hasattr(self, '_fd'):
+            if self._fd is not None:
+                os.close(self._fd)
+                self._fd = None
 
     # Immutable properties
 

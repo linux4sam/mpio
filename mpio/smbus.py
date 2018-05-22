@@ -133,9 +133,10 @@ class SMBus(object):
     def close(self):
         """Close the device and release any system resources.
         """
-        if self._fd is not None:
-            os.close(self._fd)
-            self._fd = None
+        if hasattr(self, '_fd'):
+            if self._fd is not None:
+                os.close(self._fd)
+                self._fd = None
 
     def __str__(self):
         return ("SMBus (devpath=%s, fd=%d)") % (self.devpath, self.fd)

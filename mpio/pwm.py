@@ -208,11 +208,12 @@ class PWM(object):
 
     def close(self):
         """Close the channel and release any system resources."""
-        if self._chip is None or self._channel is None:
-            return
+        if hasattr(self, '_chip') and hasattr(self, '_channel'):
+            if self._chip is None or self._channel is None:
+                return
 
-        utils.writestr_all(os.path.join(_CHIP_PATH(self._chip), 'unexport'),
-                           self._channel)
+            utils.writestr_all(os.path.join(_CHIP_PATH(self._chip), 'unexport'),
+                               self._channel)
 
         self._chip = None
         self._channel = None

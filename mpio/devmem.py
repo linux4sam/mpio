@@ -177,12 +177,14 @@ class DevMem(object):
 
     def close(self):
         """Close the device and release any system resources."""
-        if self._mem is not None:
-            self._mem.close()
-            self._mem = None
-        if self._fd is not None:
-            os.close(self._fd)
-            self._fd = None
+        if hasattr(self, '_mem'):
+            if self._mem is not None:
+                self._mem.close()
+                self._mem = None
+        if hasattr(self, '_fd'):
+            if self._fd is not None:
+                os.close(self._fd)
+                self._fd = None
 
     @staticmethod
     def write_reg(addr, value):

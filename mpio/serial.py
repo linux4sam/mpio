@@ -279,7 +279,6 @@ class Serial(object):
 
         Returns:
             int: number of bytes waiting to be read.
-
         """
         # Get input waiting
         buf = array.array('I', [0])
@@ -302,12 +301,10 @@ class Serial(object):
     def close(self):
         """Close the tty device.
         """
-        if self._fd is None:
-            return
-
-        os.close(self._fd)
-
-        self._fd = None
+        if hasattr(self, '_fd'):
+            if self._fd is not None:
+                os.close(self._fd)
+                self._fd = None
 
     # Immutable properties
 
