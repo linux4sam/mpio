@@ -25,6 +25,7 @@ Example:
         WDIOC_GETSUPPORT = _IOR(ord('W'), 0, "=II32s")
 """
 import struct
+import sys
 
 # pragma pylint: disable=locally-disabled,invalid-name,missing-docstring
 
@@ -51,8 +52,12 @@ IOC_WRITE = 1
 IOC_READ = 2
 
 def IOC(direction, itype, nr, size):
-    if isinstance(size, str) or isinstance(size, unicode):
-        size = struct.calcsize(size)
+    if sys.version_info >= (3,0,0):
+        if isinstance(size, str):
+            size = struct.calcsize(size)
+    else:
+        if isinstance(size, basestring):
+            size = struct.calcsize(size)
     return direction << _IOC_DIRSHIFT | \
         itype << _IOC_TYPESHIFT | \
         nr   << _IOC_NRSHIFT | \
