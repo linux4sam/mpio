@@ -68,6 +68,7 @@ def cpu():
         return fixed
 
     cpus = [
+        ("sam9x60", "sam9x60"),
         ("sama5d3", "sama5d3"),
         ("sama5d4", "sama5d4"),
         ("sama5d2", "sama5d2"),
@@ -95,6 +96,7 @@ def board():
         return fixed
 
     boards = [
+        ("sam9x60-ek", "microchip,sam9x60ek"),
         ("sama5d3-xplained", "atmel,sama5d3-xplained"),
         ("sama5d4-xplained", "atmel,sama5d4-xplained"),
         ("sama5d2-xplained", "atmel,sama5d2-xplained"),
