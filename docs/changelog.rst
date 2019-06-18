@@ -1,6 +1,12 @@
 Changelog
 ---------
 
+1.2 (June 18, 2019)
+=======================
+
+- mpio: fix Python 3 incompatability
+
+
 1.1 (September 6, 2018)
 =======================
 
