@@ -1,4 +1,4 @@
-![Microchip](docs/_static/microchip_logo.png)
+![Microchip](https://raw.githubusercontent.com/linux4sam/mpio/master/docs/_static/microchip_logo.png)
 
 # Microchip Peripheral I/O Python Package
 
