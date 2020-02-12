@@ -255,7 +255,7 @@ class GPIO(object):
         req.lineoffsets[0] = self._line_offset
         req.default_values[0] = 0
         req.flags = _GPIOHANDLE_REQUEST_INPUT
-        req.consumer_label = "MPIO"
+        req.consumer_label = b'MPIO'
         req.lines = 1
         req.fd = 0
 
@@ -287,7 +287,7 @@ class GPIO(object):
         req.lineoffsets[0] = self._line_offset
         req.default_values[0] = 0
         req.flags = _GPIOHANDLE_REQUEST_OUTPUT
-        req.consumer_label = "MPIO"
+        req.consumer_label = b'MPIO'
         req.lines = 1
         req.fd = 0
 
@@ -329,7 +329,7 @@ class GPIO(object):
         req = _CGPIOGPIOEventRequest()
         req.lineoffset = self._line_offset
         req.handleflags = 0
-        req.consumer_label = "MPIO"
+        req.consumer_label = b'MPIO'
         if edge == self.BOTH:
             req.eventflags = _GPIOEVENT_REQUEST_RISING_EDGE | \
                              _GPIOEVENT_REQUEST_FALLING_EDGE
