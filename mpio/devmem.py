@@ -64,8 +64,8 @@ class DevMem(object):
         self._filename = None
         self._mem = None
 
-        if not isinstance(addr, (int, long)):
-            raise TypeError("addr must be an int, long.")
+        if not isinstance(addr, int):
+            raise TypeError("addr must be an int.")
 
         if addr <= 0:
             raise ValueError("addr cannot be less than 0")
