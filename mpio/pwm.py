@@ -18,6 +18,7 @@
 #
 """pwm module"""
 import os
+import sys
 
 from mpio import utils
 
@@ -73,8 +74,12 @@ class PWM(object):
         if not isinstance(channel, int):
             raise TypeError("channel must be int.")
 
-        if not isinstance(period, (int, long, type(None))):
-            raise TypeError("period must be int, long, None.")
+        if sys.version_info[0] == 2:
+            if not isinstance(period, (int, long, type(None))):
+                raise TypeError("period must be int, long, None.")
+        else:
+            if not isinstance(period, (int, type(None))):
+                raise TypeError("period must be int, None.")
 
         if not isinstance(duty_cycle, (int, float, type(None))):
             raise TypeError("duty_cycle must be int, float, None.")
@@ -198,8 +203,12 @@ class PWM(object):
 
     @period.setter
     def period(self, period):
-        if not isinstance(period, (int, long)):
-            raise TypeError("period must be an int, long.")
+        if sys.version_info[0] == 2:
+            if not isinstance(period, (int, long)):
+                raise TypeError("period must be an int, long.")
+        else:
+            if not isinstance(period, int):
+                raise TypeError("period must be an int.")
 
         period_ns = int(period * 1000)
 
