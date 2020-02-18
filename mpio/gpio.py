@@ -255,7 +255,7 @@ class GPIO(object):
         req.lineoffsets[0] = self._line_offset
         req.default_values[0] = 0
         req.flags = _GPIOHANDLE_REQUEST_INPUT
-        req.consumer_label = "MPIO"
+        req.consumer_label = bytes("MPIO", "utf-8")
         req.lines = 1
         req.fd = 0
 
@@ -287,7 +287,7 @@ class GPIO(object):
         req.lineoffsets[0] = self._line_offset
         req.default_values[0] = 0
         req.flags = _GPIOHANDLE_REQUEST_OUTPUT
-        req.consumer_label = "MPIO"
+        req.consumer_label = bytes("MPIO", "utf-8")
         req.lines = 1
         req.fd = 0
 
