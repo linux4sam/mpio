@@ -1,10 +1,17 @@
 Changelog
 ---------
 
+1.3 (August 31, 2020)
+=======================
+
+- mpio: more fixes to Python 3 incompatibility (pwm, gpio, devmem)
+- utils: add support for sam9x60-ek
+
+
 1.2 (June 18, 2019)
 =======================
 
-- mpio: fix Python 3 incompatability
+- mpio: fix Python 3 incompatibility
 
 
 1.1 (September 6, 2018)
