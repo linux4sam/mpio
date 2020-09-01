@@ -3,6 +3,7 @@ Introduction
 
 The Microchip Peripheral I/O package provides a Python API to many of the
 hardware peripherals found on boards running Linux like the
+`Microchip SAM9X60 Evaluation Kit`_,
 `Microchip SAMA5D2 Xplained`_, `Microchip SAMA5D3 Xplained`_, and
 `Microchip SAMA5D4 Xplained`_.
 
@@ -41,6 +42,7 @@ source files, including the `MIT License`_.
 
 .. _Apache 2 License: https://www.apache.org/licenses/LICENSE-2.0
 .. _MIT License: https://opensource.org/licenses/MIT
+.. _Microchip SAM9X60 Evaluation Kit: https://www.microchip.com/wwwproducts/en/SAM9X60
 .. _Microchip SAMA5D2 Xplained: http://www.microchip.com/design-centers/32-bit-mpus/sama5-new/sama5d2-series
 .. _Microchip SAMA5D3 Xplained: http://www.microchip.com/design-centers/32-bit-mpus/sama5-new/sama5d3-series
 .. _Microchip SAMA5D4 Xplained: http://www.microchip.com/design-centers/32-bit-mpus/sama5-new/sama5d4-series
