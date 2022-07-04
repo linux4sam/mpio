@@ -69,6 +69,7 @@ def cpu():
 
     cpus = [
         ("sam9x60", "sam9x60"),
+        ("sam9x7", "sam9x7"),
         ("sama5d3", "sama5d3"),
         ("sama5d4", "sama5d4"),
         ("sama5d2", "sama5d2"),
@@ -97,6 +98,7 @@ def board():
 
     boards = [
         ("sam9x60-ek", "microchip,sam9x60ek"),
+        ("sam9x75-eb", "microchip,sam9x75eb"),
         ("sama5d3-xplained", "atmel,sama5d3-xplained"),
         ("sama5d4-xplained", "atmel,sama5d4-xplained"),
         ("sama5d2-xplained", "atmel,sama5d2-xplained"),
