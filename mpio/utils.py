@@ -103,6 +103,7 @@ def board():
         ("sama5d4-xplained", "atmel,sama5d4-xplained"),
         ("sama5d2-xplained", "atmel,sama5d2-xplained"),
         ("sama5d27-som1-ek", "atmel,sama5d27-som1-ek"),
+        ("sama5d27-wlsom1-ek", "microchip,sama5d27-wlsom1-ek"),
         ("sama5d2-ptc-ek", "atmel,sama5d2-ptc_ek"),
         ("at91sam9x35-ek", "atmel,at91sam9g35ek")
     ]
