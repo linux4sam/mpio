@@ -1,6 +1,14 @@
 Changelog
 ---------
 
+1.4 (July 6, 2022)
+==================
+
+- utils: add support for sam9x7 and sam9x7-eb
+- utils: add support for sama7g5 and sama7g5-ek
+- utils: add support for sama5d27 wlsom1 ek
+
+
 1.3 (August 31, 2020)
 =======================
 
