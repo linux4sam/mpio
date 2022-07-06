@@ -24,7 +24,7 @@ from mpio import __version__
 
 try:
     import pypandoc
-    README = pypandoc.convert('README.md', 'rst')
+    README = pypandoc.convert_file('README.md', 'rst')
 except ImportError:
     with codecs.open('README.md', encoding='utf-8') as f:
         README = f.read()
