@@ -3,7 +3,7 @@
 # Microchip Peripheral I/O Python Package
 
 This package provides easy access to various hardware peripherals found on
-Microchip AT91/SAMA5 processors and Xplained boards running Linux.  The API is
+Microchip AT91/SAMA5/SAMA7 processors and boards running Linux.  The API is
 clean, consistent, flexible, documented, and well tested to make navigating and
 exercising even the most complex hardware peripherals a trivial task.
 
