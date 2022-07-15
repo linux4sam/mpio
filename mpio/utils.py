@@ -98,6 +98,7 @@ def board():
         return fixed
 
     boards = [
+        ("sam9x60-curiosity", "microchip,sam9x60-curiosity"),
         ("sam9x60-ek", "microchip,sam9x60ek"),
         ("sam9x75-eb", "microchip,sam9x75eb"),
         ("sama5d3-xplained", "atmel,sama5d3-xplained"),
