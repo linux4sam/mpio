@@ -31,5 +31,5 @@ from .serial import Serial
 from .devmem import DevMem
 from .smbus import SMBus
 
-__version__ = '1.4'
+__version__ = '1.5'
 "mpio module version string."

@@ -1,6 +1,13 @@
 Changelog
 ---------
 
+1.5 (April 12, 2023)
+====================
+
+- fix warnings with setup.py (pypandoc) & setup.cfg (description_file)
+- utils: add support sam9x60 curiosity board
+
+
 1.4 (July 6, 2022)
 ==================
 
