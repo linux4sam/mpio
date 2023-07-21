@@ -42,6 +42,7 @@ source files, including the `MIT License`_.
 
 .. _Apache 2 License: https://www.apache.org/licenses/LICENSE-2.0
 .. _MIT License: https://opensource.org/licenses/MIT
+.. _Microchip SAM9X75 Engineering Board: https://www.microchip.com/en-us/development-tool/EA14J50A
 .. _Microchip SAM9X60 Evaluation Kit: https://www.microchip.com/wwwproducts/en/SAM9X60
 .. _Microchip SAMA5D2 Xplained: http://www.microchip.com/design-centers/32-bit-mpus/sama5-new/sama5d2-series
 .. _Microchip SAMA5D27 WLSOM1 EK: https://www.microchip.com/en-us/development-tool/DM320117
