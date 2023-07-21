@@ -1,6 +1,13 @@
 Changelog
 ---------
 
+1.6 (July 21, 2023)
+====================
+
+- fix link for sam9x75-eb
+- add .readthedocs.yaml file
+
+
 1.5 (April 12, 2023)
 ====================
 
