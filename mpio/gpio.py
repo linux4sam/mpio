@@ -380,6 +380,7 @@ class GPIO(object):
             fcntl.ioctl(fd, _GPIO_GET_CHIPINFO_IOCTL, info, True)
             for line_offset in range(info.lines):
                 if offset == pin:
+                    os.close(fd) #when this returns it open a files that it doesnt close
                     return devname, line_offset
                 offset += 1
             os.close(fd)
