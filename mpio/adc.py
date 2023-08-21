@@ -63,8 +63,8 @@ class ADC(object):
     analog inputs.
 
     See Also:
-        http://www.at91.com/linux4sam/bin/view/Linux4SAM/IioAdcDriver
-        http://www.at91.com/linux4sam/bin/view/Linux4SAM/UsingSAMA5D2ADCDevice
+        https://www.linux4sam.org/bin/view/Linux4SAM/IioAdcDriver
+        https://www.linux4sam.org/bin/view/Linux4SAM/UsingSAMA5D2ADCDevice
 
     Args:
         device (int): The ADC device.
