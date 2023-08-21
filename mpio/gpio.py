@@ -380,6 +380,7 @@ class GPIO(object):
             fcntl.ioctl(fd, _GPIO_GET_CHIPINFO_IOCTL, info, True)
             for line_offset in range(info.lines):
                 if offset == pin:
+                    os.close(fd)
                     return devname, line_offset
                 offset += 1
             os.close(fd)
@@ -406,6 +407,7 @@ class GPIO(object):
                 line.line_offset = line_offset
                 fcntl.ioctl(fd, _GPIO_GET_LINEINFO_IOCTL, line, True)
                 if line.name == name:
+                    os.close(fd)
                     return offset
                 offset += 1
             os.close(fd)
