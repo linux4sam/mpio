@@ -100,12 +100,14 @@ def board():
     boards = [
         ("sam9x60-curiosity", "microchip,sam9x60-curiosity"),
         ("sam9x60-ek", "microchip,sam9x60ek"),
+        ("sam9x75-curiosity", "microchip,sam9x75-curiosity"),
         ("sam9x75-eb", "microchip,sam9x75eb"),
         ("sama5d3-xplained", "atmel,sama5d3-xplained"),
         ("sama5d4-xplained", "atmel,sama5d4-xplained"),
         ("sama5d2-xplained", "atmel,sama5d2-xplained"),
         ("sama5d27-som1-ek", "atmel,sama5d27-som1-ek"),
         ("sama5d27-wlsom1-ek", "microchip,sama5d27-wlsom1-ek"),
+        ("sama5d29-curiosity", "microchip,sama5d29-curiosity"),
         ("sama5d2-ptc-ek", "atmel,sama5d2-ptc_ek"),
         ("sama7g5-ek", "microchip,sama7g5ek"),
         ("at91sam9x35-ek", "atmel,at91sam9g35ek")
