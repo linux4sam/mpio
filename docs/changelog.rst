@@ -1,6 +1,15 @@
 Changelog
 ---------
 
+1.7 (October 3, 2023)
+=====================
+
+- gpio: fix file descriptor close
+- utils: add support for sama5d29 curiosity
+- utils: add support for sam9x75 curiosity
+- fix url in documentation
+
+
 1.6 (July 21, 2023)
 ====================
 
