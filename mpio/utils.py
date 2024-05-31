@@ -73,6 +73,7 @@ def cpu():
         ("sama5d3", "sama5d3"),
         ("sama5d4", "sama5d4"),
         ("sama5d2", "sama5d2"),
+        ("sama7d6", "sama7d6"),
         ("sama7g5", "sama7g5"),
         ("at91sam9x5", "at91sam9x5")
     ]
@@ -109,6 +110,7 @@ def board():
         ("sama5d27-wlsom1-ek", "microchip,sama5d27-wlsom1-ek"),
         ("sama5d29-curiosity", "microchip,sama5d29-curiosity"),
         ("sama5d2-ptc-ek", "atmel,sama5d2-ptc_ek"),
+        ("sama7d65-curiosity", "microchip,sama7d65-curiosity"),
         ("sama7g5-ek", "microchip,sama7g5ek"),
         ("at91sam9x35-ek", "atmel,at91sam9g35ek")
     ]
