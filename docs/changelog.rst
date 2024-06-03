@@ -1,6 +1,12 @@
 Changelog
 ---------
 
+1.8 (Jun  3, 2024)
+==================
+
+- utils: add support for sama7d65 curiosity
+
+
 1.7 (October 3, 2023)
 =====================
 
